@@ -72,6 +72,8 @@ const discount = 0.043; //10yr yield
 
 const mortgage30yr = 6.46;
 
+const corePCEYoy = 3.10;
+
 
 
 const gasFeb23 = 2.937;
@@ -247,15 +249,44 @@ const fmt = (n) => {
   return "$" + floored.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 };
 
+const gasFebValueEl = document.getElementById("gas-feb-value");
+if (gasFebValueEl) gasFebValueEl.textContent = fmt(gasFeb23);
+
+const gasTodayValueEl = document.getElementById("gas-today-value");
+if (gasTodayValueEl) gasTodayValueEl.textContent = fmt(gasNow);
+
+// const directApr7El = document.getElementById("direct-apr7-value");
+// if (directApr7El) directApr7El.textContent = `${fmt(totalDirectWarApr7 / 1e9)}B`;
+
+// const directTodayEl = document.getElementById("direct-today-value");
+// if (directTodayEl) directTodayEl.textContent = `${fmt(totalDirectWar / 1e9)}B`;
+
+const oilFebEl = document.getElementById("oil-feb-value");
+if (oilFebEl) oilFebEl.textContent = (corePCEYoy).toFixed(2) + "%";
+
+const oilSpotEl = document.getElementById("oil-spot-value");
+if (oilSpotEl) oilSpotEl.textContent = (corePCEIncrease * 100).toFixed(2) + "%";
+
+const mortgageFebEl = document.getElementById("mortgage-feb-value");
+if (mortgageFebEl) mortgageFebEl.textContent = `${mortgage30yrFeb26.toFixed(2)}%`;
+
+const mortgageTodayEl = document.getElementById("mortgage-today-value");
+if (mortgageTodayEl) mortgageTodayEl.textContent = `${mortgage30yr.toFixed(2)}%`;
+
 
 
 //total cost per hosuehold
+dailyCostHH = dailyDirectWarPH + dailyGasPH;
 totalCostHH = totalDirectWarPH + totalGasPH + pdvInflation;
 totalCostHHYear = annualDirectWarPH + annualGasPH + pdvInflation;
 document.getElementById("total-per-household").textContent = fmt(totalCostHH);
 
 
-
+// startCounter({
+//   elementId: "total-per-household",
+//   startValue: totalCostHH,
+//   dailyIncrement: dailyCostHH,
+// });
 
 
 

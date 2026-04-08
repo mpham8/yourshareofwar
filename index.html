@@ -10,7 +10,8 @@
   <!-- Added 'Poppins' for a more professional heading font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Roboto+Mono:wght@400;600&family=Poppins:wght@500;700;900&display=swap" rel="stylesheet">
   <script>
-    tailwind.config = {
+    window.tailwind = window.tailwind || {};
+    window.tailwind.config = {
       darkMode: 'class',
       theme: {
         fontFamily: {
@@ -68,31 +69,51 @@
     .bg-white, .bg-gray-100, .bg-gray-50, .bg-neutral-50, .bg-neutral-100 {
       background-color: #181A21 !important;
     }
-    /* Card shadow and border for professionalism */
+
+    /* ---------------------------------------------------------
+       Glassy Card Style - stronger glassmorphism than before
+    ------------------------------------------------------------*/
     .professional-shadow {
+      /* Stronger glass effect: more background blur, more visible frost */
       box-shadow: 0 8px 32px 0 rgba(36, 41, 51, 0.18), 0 1.5px 4px 0 rgba(40,45,58,0.09);
-      border: 1.5px solid #23272f;
+      border: 1.5px solid rgba(255,255,255,0.18);
       position: relative;
       overflow: hidden;
-      /* Glassmorphism styling for card: previous glass was good */
-      background: rgba(36, 41, 51, 0.44);
-      backdrop-filter: blur(14px) saturate(1.15);
-      -webkit-backdrop-filter: blur(14px) saturate(1.15);
+      /* More transparent, slightly lighter background for glass look */
+      background: linear-gradient(110deg, rgba(36,41,51,0.33) 0%, rgba(60,66,85,0.19) 100%);
+      /* Increase blur for glassiness */
+      backdrop-filter: blur(24px) saturate(1.22) brightness(1.05);
+      -webkit-backdrop-filter: blur(24px) saturate(1.22) brightness(1.05);
     }
-    /* Add a glass highlight layer */
+    /* Brighter & more glossy "glass" reflection on surface */
     .professional-shadow::before {
       content: "";
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
       pointer-events: none;
       border-radius: inherit;
-      background: linear-gradient(120deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.035) 100%);
+      /* Stronger and whiter glassy streak highlight */
+      background: linear-gradient(120deg,
+                  rgba(255,255,255,0.17) 0%,
+                  rgba(255,255,255,0.10) 27%,
+                  rgba(255,255,255,0.06) 100%);
       z-index: 1;
     }
     .professional-shadow > * {
       position: relative;
       z-index: 2;
     }
+    /* Give cards a "frost" at bottom */
+    .professional-shadow::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: 0; height: 32%;
+      pointer-events: none;
+      border-radius: 0 0 1.5rem 1.5rem;
+      background: linear-gradient(to top, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0) 100%);
+      z-index: 1;
+    }
+
     /* Nav shadow and border */
     .professional-nav {
       box-shadow: 0 2px 16px rgba(20,22,26,.20);
@@ -101,6 +122,19 @@
     /* Soft shadow for hero */
     .hero-shadow {
       box-shadow: 0 8px 32px 0 rgba(36, 41, 51, 0.09);
+    }
+    .more-panel {
+      display: none;
+    }
+    .more-panel.open {
+      display: block;
+    }
+    .caret {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+    .caret.open {
+      transform: rotate(90deg);
     }
   </style>
 </head>
@@ -157,24 +191,104 @@
         <div class="text-neutral-400 text-xs font-mono uppercase tracking-widest" style="color:#fff;">Direct War Cost</div>
         <div id="direct" class="text-3xl md:text-4xl font-poppins font-extrabold text-primary mb-1 drop-shadow" style="color:#fff;">$0</div>
         <div id="direct-breakdown" class="mt-0 mb-3"></div>
+        <button type="button" class="show-more-btn text-xs font-mono uppercase tracking-widest text-left opacity-80 hover:opacity-100 transition flex items-center gap-2" data-target="direct-more">
+          <span class="caret">▶</span><span class="show-more-text">Show more</span>
+        </button>
+        <div id="direct-more" class="more-panel mt-1">
+          <div class="grid grid-cols-2 gap-4 text-center">
+            <div class="flex flex-col items-center">
+              <!-- <div class="text-xl">🧾</div>
+              <div id="direct-apr7-value" class="text-base font-mono font-bold mt-1">$0.00B</div>
+              <div class="text-xs mt-1">Direct war Apr 7</div> -->
+            </div>
+            <div class="flex flex-col items-center">
+              <!-- <div class="text-xl">📊</div>
+              <div id="direct-today-value" class="text-base font-mono font-bold mt-1">$0.00B</div>
+              <div class="text-xs mt-1">Direct war today</div> -->
+            </div>
+          </div>
+          <div class="text-xs mt-4 leading-relaxed opacity-90">
+            Currently in a ceasefire as of 4/7/26; low-ball estimate assumes no daily spending. Previous spending estimated at $500M/day per <a href="https://budgetmodel.wharton.upenn.edu/blog/" target="_blank" class="underline hover:text-accent">Penn Wharton Budget Model</a>
+          </div>
+        </div>
       </div>
       <!-- Card: Gas Cost -->
       <div class="bg-surface-muted professional-shadow rounded-3xl p-7 md:p-8 flex flex-col gap-3 transition group">
         <div class="text-neutral-400 text-xs font-mono uppercase tracking-widest" style="color:#fff;">Gas Cost</div>
         <div id="gas" class="text-3xl md:text-4xl font-poppins font-extrabold text-green-300 mb-1 drop-shadow" style="color:#fff;">$0</div>
         <div id="gas-breakdown" class="mt-0 mb-3"></div>
+        <button type="button" class="show-more-btn text-xs font-mono uppercase tracking-widest text-left opacity-80 hover:opacity-100 transition flex items-center gap-2" data-target="gas-more">
+          <span class="caret">▶</span><span class="show-more-text">Show more</span>
+        </button>
+        <div id="gas-more" class="more-panel mt-1">
+          <div class="grid grid-cols-2 gap-4 text-center">
+            <div class="flex flex-col items-center">
+              <div class="text-xl">⛽</div>
+              <div id="gas-feb-value" class="text-base font-mono font-bold mt-1">$0.00</div>
+              <div class="text-xs mt-1">National avr $/gallon, Feb 23</div>
+            </div>
+            <div class="flex flex-col items-center">
+              <div class="text-xl">📈</div>
+              <div id="gas-today-value" class="text-base font-mono font-bold mt-1">$0.00</div>
+              <div class="text-xs mt-1">National avr $/gallon, Now</div>
+            </div>
+          </div>
+          <div class="text-xs mt-4 leading-relaxed opacity-90">
+            Retail gasoline prices sourced from <a href="https://fred.stlouisfed.org/series/GASREGW" target="_blank" class="underline hover:text-accent">FRED</a>, aggregated across 133.7M U.S. households.
+          </div>
+        </div>
       </div>
       <!-- Card: Core Inflation -->
       <div class="bg-surface-muted professional-shadow rounded-3xl p-7 md:p-8 flex flex-col gap-3 transition group">
         <div class="text-neutral-400 text-xs font-mono uppercase tracking-widest" style="color:#fff;">Core Inflation Impact</div>
         <div id="corepce" class="text-3xl md:text-4xl font-poppins font-extrabold text-yellow-300 mb-1 drop-shadow" style="color:#fff;"></div>
         <div id="corepce-breakdown" class="mt-0 mb-3"></div>
+        <button type="button" class="show-more-btn text-xs font-mono uppercase tracking-widest text-left opacity-80 hover:opacity-100 transition flex items-center gap-2" data-target="corepce-more">
+          <span class="caret">▶</span><span class="show-more-text">Show more</span>
+        </button>
+        <div id="corepce-more" class="more-panel mt-1">
+          <div class="grid grid-cols-2 gap-4 text-center">
+            <div class="flex flex-col items-center">
+              <div class="text-xl">🛢️</div>
+              <div id="oil-feb-value" class="text-base font-mono font-bold mt-1">$0.00</div>
+              <div class="text-xs mt-1">Baseline Core PCE YoY</div>
+            </div>
+            <div class="flex flex-col items-center">
+              <div class="text-xl">📈</div>
+              <div id="oil-spot-value" class="text-base font-mono font-bold mt-1">$0.00</div>
+              <div class="text-xs mt-1">Iran War Additional Core PCE YoY Inflation</div>
+            </div>
+          </div>
+          <div class="text-xs mt-4 leading-relaxed opacity-90">
+            Permanent shift in the Core PCE inflation level estimated following <a href="https://www.nber.org/papers/w31263" target="_blank" class="underline hover:text-accent">Gagliardone and Gertler (2023)</a> and <a href="https://www.aeaweb.org/articles?id=10.1257/aer.20190964" target="_blank" class="underline hover:text-accent">Känzig (2021)</a>, who estimate that a $7.50 increase in the present discounted value (PDV) of oil prices generates a permanent 10 basis point increase in the Core PCE price level. The PDV of the oil price deviation from the pre-war Brent crude baseline is constructed using the current futures curve across six horizons, discounted at the 10-year nominal Treasury yield.
+          </div>
+        </div>
       </div>
       <!-- Card: Housing Cost -->
       <div class="bg-surface-muted professional-shadow rounded-3xl p-7 md:p-8 flex flex-col gap-3 transition group">
         <div class="text-neutral-400 text-xs font-mono uppercase tracking-widest" style="color:#fff;">Housing Cost</div>
         <div id="housing" class="text-3xl md:text-4xl font-poppins font-extrabold text-red-300 mb-1 drop-shadow" style="color:#fff;"></div>
         <div id="housing-breakdown" class="mt-0 mb-3"></div>
+        <button type="button" class="show-more-btn text-xs font-mono uppercase tracking-widest text-left opacity-80 hover:opacity-100 transition flex items-center gap-2" data-target="housing-more">
+          <span class="caret">▶</span><span class="show-more-text">Show more</span>
+        </button>
+        <div id="housing-more" class="more-panel mt-1">
+          <div class="grid grid-cols-2 gap-4 text-center">
+            <div class="flex flex-col items-center">
+              <div class="text-xl">🏠</div>
+              <div id="mortgage-feb-value" class="text-base font-mono font-bold mt-1">0.00%</div>
+              <div class="text-xs mt-1">30-yr fixed-rate, Feb 26</div>
+            </div>
+            <div class="flex flex-col items-center">
+              <div class="text-xl">📅</div>
+              <div id="mortgage-today-value" class="text-base font-mono font-bold mt-1">0.00%</div>
+              <div class="text-xs mt-1">30-yr fixed-rate, now</div>
+            </div>
+          </div>
+          <div class="text-xs mt-4 leading-relaxed opacity-90">
+            Thirty-year fixed-rate mortgage data sourced from <a href="https://fred.stlouisfed.org/series/MORTGAGE30US" target="_blank" class="underline hover:text-accent">FRED</a> and average home prices from <a href="https://fred.stlouisfed.org/series/ASPUS" target="_blank" class="underline hover:text-accent">FRED</a>, aggregated based on an estimated 11,000 daily new home sales (<a href="https://www.census.gov/construction/nrs/current/index.html#:~:text=Sales%20of%20new%20single%2Dfamily,January%202025%20rate%20of%20662%2C000" target="_blank" class="underline hover:text-accent">source</a>).
+          </div>
+        </div>
       </div>
     </section>
 
@@ -196,6 +310,19 @@
   <script>
     // Year update
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    document.querySelectorAll('.show-more-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+        const panel = document.getElementById(targetId);
+        if (!panel) return;
+        const isOpen = panel.classList.toggle('open');
+        const label = btn.querySelector('.show-more-text');
+        const caret = btn.querySelector('.caret');
+        if (label) label.textContent = isOpen ? 'Show less' : 'Show more';
+        if (caret) caret.classList.toggle('open', isOpen);
+      });
+    });
   </script>
   <script src="script.js"></script>
 </body>
