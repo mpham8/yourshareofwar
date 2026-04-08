@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iran War Cost</title>
+  <!-- Preload Google Fonts like Cursor homepage -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Added 'Poppins' for a more professional heading font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Roboto+Mono:wght@400;600&family=Poppins:wght@500;700;900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        fontFamily: {
+          'sans': ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          'mono': ['Roboto Mono', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+          'poppins': ['Poppins', 'Inter', 'system-ui', 'sans-serif'], // Add professional font
+        },
+        extend: {
+          colors: {
+            'primary': '#2563eb',
+            'accent': '#fbbf24',
+            'company-gray': '#111827',
+            'surface': '#14161A',
+            'surface-muted': '#181A21',
+            'border-default': '#23272f',
+            // Add white for text
+            'white': '#ffffff'
+          },
+          boxShadow: {
+            'focus': '0 0 0 3px #2563eb40',
+            // Professional deep shadow
+            'professional': '0 8px 32px 0 rgba(36, 41, 51, 0.25)', 
+            'professional-light': '0 2px 12px 0 rgba(36,41,51,0.14)', 
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html, body {
+      font-family: 'Inter', 'ui-sans-serif', 'system-ui', sans-serif;
+      background: #111827;
+      min-height: 100vh;
+      color: #fff !important;
+    }
+    ::selection {
+      background: #2563eb40;
+    }
+    .text-black, .text-gray-900, .text-gray-800, .text-gray-700, .text-neutral-900, .text-neutral-800, .text-neutral-700, .text-gray-950, .text-neutral-950 {
+      color: #fff !important;
+    }
+    /* Use poppins font for headings for more professional look */
+    h1, h2, h3 {
+      font-family: 'Poppins', 'Inter', 'ui-sans-serif', 'system-ui', sans-serif;
+      letter-spacing: 0.02em;
+    }
+    /* Force all standard text elements to white */
+    h1, h2, h3, h4, h5, h6, p, span, div, a, li, label, td, th, small, strong, em, b {
+      color: #fff;
+    }
+    a.text-primary, a.text-accent, .text-primary, .text-accent {
+      color: inherit;
+    }
+    .bg-white, .bg-gray-100, .bg-gray-50, .bg-neutral-50, .bg-neutral-100 {
+      background-color: #181A21 !important;
+    }
+    /* Card shadow and border for professionalism */
+    .professional-shadow {
+      box-shadow: 0 8px 32px 0 rgba(36, 41, 51, 0.18), 0 1.5px 4px 0 rgba(40,45,58,0.09);
+      border: 1.5px solid #23272f;
+      position: relative;
+      overflow: hidden;
+      /* Glassmorphism styling for card: previous glass was good */
+      background: rgba(36, 41, 51, 0.44);
+      backdrop-filter: blur(14px) saturate(1.15);
+      -webkit-backdrop-filter: blur(14px) saturate(1.15);
+    }
+    /* Add a glass highlight layer */
+    .professional-shadow::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      border-radius: inherit;
+      background: linear-gradient(120deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.035) 100%);
+      z-index: 1;
+    }
+    .professional-shadow > * {
+      position: relative;
+      z-index: 2;
+    }
+    /* Nav shadow and border */
+    .professional-nav {
+      box-shadow: 0 2px 16px rgba(20,22,26,.20);
+      border-bottom: 1.5px solid #23272f;
+    }
+    /* Soft shadow for hero */
+    .hero-shadow {
+      box-shadow: 0 8px 32px 0 rgba(36, 41, 51, 0.09);
+    }
+  </style>
+</head>
+<body class="bg-company-gray min-h-screen w-full antialiased">
+
+  <nav class="w-full sticky top-0 z-20 py-5 professional-nav bg-company-gray/90 backdrop-blur flex items-center justify-between px-6 md:px-16">
+    <div class="flex items-center gap-3">
+      <span class="inline-flex items-center text-2xl text-primary font-extrabold tracking-tight font-mono uppercase select-none">Your Share of War<span class="text-accent ml-1"> </span></span>
+    </div>
+    <div class="hidden md:flex items-center gap-4">
+      <a href="https://github.com/mpham8/yourshareofwar" target="_blank" rel="noopener" class="text-neutral-400 hover:text-primary transition-colors items-center gap-2 flex">
+        <svg width="18" height="18" fill="none" stroke="currentColor" class="inline" viewBox="0 0 24 24"><path stroke-width="2" d="M12 1C5.924 1 1 5.865 1 12c0 4.86 3.438 8.765 8.205 9.624.6.11.82-.26.82-.577v-2.257c-3.338.726-4.042-1.402-4.042-1.402-.547-1.377-1.337-1.743-1.337-1.743-1.09-.746.083-.731.083-.731 1.205.084 1.84 1.229 1.84 1.229 1.072 1.82 2.81 1.295 3.495.992.108-.769.419-1.294.762-1.593-2.665-.303-5.466-1.318-5.466-5.872 0-1.298.47-2.36 1.235-3.191-.125-.304-.535-1.526.116-3.181 0 0 1.008-.318 3.3 1.218a11.38 11.38 0 013.004-.404 11.386 11.386 0 013.004.404c2.292-1.536 3.298-1.218 3.298-1.218.653 1.655.243 2.877.12 3.181.77.83 1.234 1.893 1.234 3.191 0 4.564-2.803 5.567-5.475 5.866.429.367.814 1.088.814 2.194v3.253c0 .32.217.694.825.576C19.565 20.763 23 16.86 23 12c0-6.135-4.925-11-11-11z"></path></svg>
+      </a>
+      <a href="https://x.com/michael_pham8" target="_blank" rel="noopener" class="text-neutral-400 hover:text-primary transition-colors items-center gap-2 flex">
+        <svg width="18" height="18" viewBox="0 0 1200 1227" fill="none" xmlns="http://www.w3.org/2000/svg" class="inline">
+          <path d="M706.682 525.378 1156.02 0h-105.131L661.424 460.589 319.285 0H0l473.667 648.975L0 1227h105.133l414.644-473.742L880.716 1227h319.284l-493.317-701.622Z" fill="currentColor"/>
+        </svg>
+      </a>
+    </div>
+  </nav>
+
+  <main class="max-w-5xl w-full mx-auto px-4 md:px-0 py-14 lg:py-20 flex flex-col gap-16">
+
+    <!-- Hero with Summary Grid (adds Total Per Household box top right) -->
+    <section class="flex flex-col md:flex-row gap-12 md:gap-8 items-center justify-between">
+      <div class="flex-1 flex flex-col items-start">
+        <h1 class="text-5xl md:text-6xl font-extrabold font-poppins text-transparent bg-gradient-to-br from-primary to-accent bg-clip-text tracking-tight mb-5 leading-tight hero-shadow" style="color:#fff;">
+          Iran War<br class="hidden md:inline"> Cost Dashboard
+        </h1>
+        <p class="text-neutral-300 text-lg md:text-xl font-medium max-w-lg mb-6" style="color:#fff; font-family:'Inter', 'ui-sans-serif', 'system-ui', sans-serif;">
+          Estimates of direct and indirect costs from inflation, gas, and home buying.
+        </p>
+        <!-- See Dashboard button removed -->
+        <div class="text-neutral-400 text-xs font-mono mt-2" style="color:#fff;">Last updated 4/7/2026.</div>
+      </div>
+      <div class="flex-1 flex flex-col items-center md:items-end w-full space-y-6">
+        <!-- Top summary grid: total per household and direct war cost preview -->
+        <div class="w-full flex flex-col md:flex-row gap-4 justify-end">
+          <!-- Total Cost per Household (top right) -->
+          <div class="w-full md:w-80 rounded-3xl bg-surface-muted professional-shadow p-8 flex flex-col items-center justify-center">
+            <div class="text-neutral-400 font-mono text-xs uppercase mb-2 tracking-widest" style="color:#fff;">Total Cost per Household</div>
+            <div id="total-per-household" class="text-4xl md:text-5xl font-poppins font-extrabold text-accent mb-1 drop-shadow" style="color:#fff;">$0</div>
+            <div class="text-neutral-500 font-medium text-xs" style="color:#fff;">Current estimate</div>
+          </div>
+          <!-- Decorative/hero metric preview: Direct War Cost moved down -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Dashboard cards -->
+    <section id="dashboard" class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 mt-2">
+      <!-- Card: Direct War Cost (moved to main grid) -->
+      <div class="bg-surface-muted professional-shadow rounded-3xl p-7 md:p-8 flex flex-col gap-3 transition group">
+        <div class="text-neutral-400 text-xs font-mono uppercase tracking-widest" style="color:#fff;">Direct War Cost</div>
+        <div id="direct" class="text-3xl md:text-4xl font-poppins font-extrabold text-primary mb-1 drop-shadow" style="color:#fff;">$0</div>
+        <div id="direct-breakdown" class="mt-0 mb-3"></div>
+      </div>
+      <!-- Card: Gas Cost -->
+      <div class="bg-surface-muted professional-shadow rounded-3xl p-7 md:p-8 flex flex-col gap-3 transition group">
+        <div class="text-neutral-400 text-xs font-mono uppercase tracking-widest" style="color:#fff;">Gas Cost</div>
+        <div id="gas" class="text-3xl md:text-4xl font-poppins font-extrabold text-green-300 mb-1 drop-shadow" style="color:#fff;">$0</div>
+        <div id="gas-breakdown" class="mt-0 mb-3"></div>
+      </div>
+      <!-- Card: Core Inflation -->
+      <div class="bg-surface-muted professional-shadow rounded-3xl p-7 md:p-8 flex flex-col gap-3 transition group">
+        <div class="text-neutral-400 text-xs font-mono uppercase tracking-widest" style="color:#fff;">Core Inflation Impact</div>
+        <div id="corepce" class="text-3xl md:text-4xl font-poppins font-extrabold text-yellow-300 mb-1 drop-shadow" style="color:#fff;"></div>
+        <div id="corepce-breakdown" class="mt-0 mb-3"></div>
+      </div>
+      <!-- Card: Housing Cost -->
+      <div class="bg-surface-muted professional-shadow rounded-3xl p-7 md:p-8 flex flex-col gap-3 transition group">
+        <div class="text-neutral-400 text-xs font-mono uppercase tracking-widest" style="color:#fff;">Housing Cost</div>
+        <div id="housing" class="text-3xl md:text-4xl font-poppins font-extrabold text-red-300 mb-1 drop-shadow" style="color:#fff;"></div>
+        <div id="housing-breakdown" class="mt-0 mb-3"></div>
+      </div>
+    </section>
+
+    <!-- Info/explainer block (inline, not a square) -->
+    <div class="w-full text-center mt-2 mb-2 text-neutral-300 text-sm font-medium flex items-center justify-center" style="color:#fff;">
+      <span class="text-primary text-xl font-bold mr-2"></span>
+      <span>
+        All figures are estimates based on public data and methods. Views are solely my own.
+        Questions? <a href="https://x.com/michael_pham8" class="text-primary underline" style="color:#4f8cff;" target="_blank" rel="noopener">Contact me</a>
+      </span>
+    </div>
+    <footer class="pt-12 md:pt-20 pb-6 text-neutral-600 text-center text-xs tracking-wide select-none" style="color:#fff; font-family:'Inter', 'ui-sans-serif', 'system-ui', sans-serif;">
+      <span class="font-semibold">&copy; <span id="year"></span> Michael Pham</span>
+      <span class="mx-2">&#8226;</span>
+      <span>All Rights Reserved</span>
+    </footer>
+  </main>
+
+  <script>
+    // Year update
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
