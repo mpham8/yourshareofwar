@@ -22,7 +22,7 @@
     totalGasApr7: 10101409065,
     dailyHomeSales: 11000,
     annualGasGallonsEstimate: 375698630,
-    medianCoreSpending: 65000,
+    medianCoreSpending: 58901,
     kanzigShockOilDollar: 7.50,
     kanzigShockCorePCEbp: 10,
     baselineDate: new Date(2026, 3, 7),
